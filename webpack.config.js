@@ -1,17 +1,20 @@
 const path = require('path')
-const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+const ESLintPlugin = require('eslint-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const isProduction = process.env.NODE_ENV === 'production'
 const isCoverage = process.env.NODE_ENV === 'coverage'
 
 module.exports = {
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: isProduction ? 'production' : 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: 'dist/',
-    filename: 'vue-select-menu.js',
-    library: 'vSelectMenu',
+    filename: 'VueSelectMenu.js',
+    library: 'VueSelectMenu',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -31,14 +34,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
+          isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           'css-loader'
         ]
       },
       {
         test: /\.scss$/,
         use: [
-          'vue-style-loader',
+          isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           'css-loader',
           'sass-loader'
         ]
@@ -46,7 +49,7 @@ module.exports = {
       {
         test: /\.sass$/,
         use: [
-          'vue-style-loader',
+          isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           'css-loader',
           'sass-loader?indentedSyntax'
         ]
@@ -54,7 +57,7 @@ module.exports = {
       {
         test: /\.styl$/,
         use: [
-          'vue-style-loader',
+          isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
           'css-loader',
           'stylus-loader'
         ]
@@ -115,19 +118,24 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = 'source-map'
+  module.exports.devtool = false
   module.exports.optimization = merge(module.exports.optimization || {}, {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [
+      new TerserPlugin(),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   })
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      options: {
-        productionGzip: true,
-        productionGzipExtensions: ['js', 'css']
-      }
-    })
+    new VueLoaderPlugin(),
+    new ESLintPlugin({
+      extensions: ['js', 'vue'],
+      files: [
+        path.join(__dirname, 'src'),
+        path.join(__dirname, 'spec')
+      ]
+    }),
+    isProduction && new MiniCssExtractPlugin({ filename: 'VueSelectMenu.css' })
   ])
 }

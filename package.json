@@ -4,7 +4,7 @@
   "version": "2.0.4",
   "author": "The Running Hub Team &lt;engineer@therunninghub.net&gt;",
   "license": "MIT",
-  "main": "dist/vue-select-menu.js",
+  "main": "dist/VueSelectMenu.js",
   "homepage": "https://opensource.therunninghub.net/projects/vue-select-menu/",
   "repository": {
     "type": "git",

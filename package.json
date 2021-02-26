@@ -1,10 +1,10 @@
 {
   "name": "@therunninghub/vue-select-menu",
   "description": "Select menu for Vue.JS, A simple, easier and highly customized menu solution",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "author": "The Running Hub Team &lt;engineer@therunninghub.net&gt;",
   "license": "MIT",
-  "main": "dist/vue-select-menu.js",
+  "main": "dist/VueSelectMenu.js",
   "homepage": "https://opensource.therunninghub.net/projects/vue-select-menu/",
   "repository": {
     "type": "git",

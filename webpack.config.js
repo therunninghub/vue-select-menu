@@ -1,8 +1,8 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
 const { merge } = require('webpack-merge')
-const TerserPlugin = require("terser-webpack-plugin")
-var isCoverage = process.env.NODE_ENV === 'coverage';
+const TerserPlugin = require('terser-webpack-plugin')
+const isCoverage = process.env.NODE_ENV === 'coverage'
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
@@ -17,21 +17,23 @@ module.exports = {
   },
   module: {
     rules: [
-      isCoverage ? {
-        test: /\.(js|ts)/,
-        use: {
-          loader: 'istanbul-instrumenter-loader',
-          options: { esModules: true }
-        },
-        enforce: 'post',
-        exclude: /node_modules|\.spec\.js$/
-      } : {},
+      isCoverage
+        ? {
+            test: /\.(js|ts)/,
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: { esModules: true }
+            },
+            enforce: 'post',
+            exclude: /node_modules|\.spec\.js$/
+          }
+        : {},
       {
         test: /\.css$/,
         use: [
           'vue-style-loader',
           'css-loader'
-        ],
+        ]
       },
       {
         test: /\.scss$/,
@@ -39,7 +41,7 @@ module.exports = {
           'vue-style-loader',
           'css-loader',
           'sass-loader'
-        ],
+        ]
       },
       {
         test: /\.sass$/,
@@ -47,7 +49,7 @@ module.exports = {
           'vue-style-loader',
           'css-loader',
           'sass-loader?indentedSyntax'
-        ],
+        ]
       },
       {
         test: /\.styl$/,
@@ -55,7 +57,7 @@ module.exports = {
           'vue-style-loader',
           'css-loader',
           'stylus-loader'
-        ],
+        ]
       },
       {
         test: /\.vue$/,
@@ -65,12 +67,12 @@ module.exports = {
             // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': [
+            scss: [
               'vue-style-loader',
               'css-loader',
               'sass-loader'
             ],
-            'sass': [
+            sass: [
               'vue-style-loader',
               'css-loader',
               'sass-loader?indentedSyntax'
@@ -95,7 +97,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
+      vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, 'src/'),
       '@test': path.resolve(__dirname, 'tests/')
     },
@@ -116,7 +118,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = false
   module.exports.optimization = merge(module.exports.optimization || {}, {
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [new TerserPlugin()]
   })
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([

@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 6,
-    sourceType: "module",
+    sourceType: 'module',
     parser: '@babel/eslint-parser'
   },
   env: {
@@ -22,4 +22,4 @@ module.exports = {
   plugins: [
     'vue'
   ]
-};
+}

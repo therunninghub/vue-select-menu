@@ -92,7 +92,7 @@
   },
   "nyc": {
     "include": [
-      "src/SelectMenu.js"
+      "src/VueSelectMenu.js"
     ],
     "instrument": false,
     "sourceMap": false

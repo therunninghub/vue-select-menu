@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import VueSelectMenu from '../../../src/SelectMenu';
+import VueSelectMenu from '../../../src/VueSelectMenu';
 
 export default {
   components: {VueSelectMenu},

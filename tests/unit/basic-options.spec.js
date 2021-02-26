@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { expect } from 'chai'
 import list from '@test/sample/nba-teams'
-import sm from '@/SelectMenu'
+import sm from '@/VueSelectMenu'
 
 describe('vue-select-menu basic options', () => {
   describe('"embed" option set to true', () => {

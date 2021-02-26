@@ -55,6 +55,7 @@ Include plugin in your `main.js` file.
 ```js
 import Vue from 'vue'
 import VueSelectMenu from '@therunninghub/vue-select-menu'
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 Vue.use(VueSelectMenu, {
   // global config options...
@@ -68,6 +69,7 @@ Vue.use(VueSelectMenu, {
 ```js
 import Vue from 'vue'
 import VueSelectMenu from '@therunninghub/vue-select-menu'
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 Vue.use(VueSelectMenu, {
   // global config options...
@@ -98,6 +100,7 @@ module.exports = {
 
 <script>
 import { VueSelectMenu } from '@therunninghub/vue-select-menu';
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu }

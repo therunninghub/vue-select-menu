@@ -11,8 +11,7 @@
     "url": "https://github.com/therunninghub/vue-select-menu"
   },
   "files": [
-    "/dist",
-    "/src"
+    "/dist"
   ],
   "scripts": {
     "dev": "npm run dev:docs",

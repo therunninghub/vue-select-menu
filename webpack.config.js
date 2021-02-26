@@ -1,24 +1,31 @@
 var path = require('path')
 var webpack = require('webpack')
+const { merge } = require('webpack-merge')
+const TerserPlugin = require("terser-webpack-plugin")
 var isCoverage = process.env.NODE_ENV === 'coverage';
 
 module.exports = {
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: 'dist/',
-    filename: 'v-selectmenu.js',
-	library: 'vSelectMenu',
-	libraryTarget: 'umd',
-	umdNamedDefine: true
+    filename: 'vue-select-menu.js',
+    library: 'vSelectMenu',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [
       isCoverage ? {
-          test: /\.(js|ts)/,
-          include: path.resolve('src'), // instrument only testing sources with Istanbul, after ts-loader runs
-          loader: 'istanbul-instrumenter-loader'
-      }: {},
+        test: /\.(js|ts)/,
+        use: {
+          loader: 'istanbul-instrumenter-loader',
+          options: { esModules: true }
+        },
+        enforce: 'post',
+        exclude: /node_modules|\.spec\.js$/
+      } : {},
       {
         test: /\.css$/,
         use: [
@@ -89,8 +96,8 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-	  '@': path.resolve(__dirname, 'src/'),
-	  '@test': path.resolve(__dirname, 'tests/')
+      '@': path.resolve(__dirname, 'src/'),
+      '@test': path.resolve(__dirname, 'tests/')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },
@@ -102,30 +109,23 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: isCoverage?'inline-cheap-module-source-map':'#eval-source-map'
+  devtool: isCoverage ? 'inline-cheap-module-source-map' : 'eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = false
+  module.exports.optimization = merge(module.exports.optimization || {}, {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  })
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-	  options: {
-	    productionGzip: true,
-		productionGzipExtensions: ['js', 'css']
-	  }
+      options: {
+        productionGzip: true,
+        productionGzipExtensions: ['js', 'css']
+      }
     })
   ])
 }

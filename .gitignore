@@ -1,5 +1,8 @@
 .DS_Store
 node_modules/
+.nyc_output/
+coverage/
+docs/.vuepress/dist
 npm-debug.log
 yarn-error.log
 

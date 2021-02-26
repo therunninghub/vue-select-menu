@@ -1,6 +1,6 @@
 const doSome = function () {
   const div = document.createElement('div')
-  div.className = 'v-selectmenu-callback'
+  div.className = 'vue-select-menu-callback'
   div.innerText = 'This is the test DIV dom'
   document.body.appendChild(div)
 }

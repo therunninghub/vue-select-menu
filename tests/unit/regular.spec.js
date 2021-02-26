@@ -5,7 +5,7 @@ import sm from '@/SelectMenu'
 
 const REGULAR = 'regular'
 
-describe('v-selectmenu regular mode', () => {
+describe('vue-select-menu regular mode', () => {
   describe('The basic regular menu', () => {
     const w = mount(sm, {
       propsData: {
@@ -22,20 +22,20 @@ describe('v-selectmenu regular mode', () => {
     it('The number of menu disabled item should be 2', () => {
       expect(w.findAll('ul.sm-regular .sm-disabled').length).to.equal(2)
     })
-    it('The text in header bar of menu should be "SelectMenu"', () => {
-      expect(w.find('.sm-header h3').text()).to.equal('SelectMenu')
+    it('The text in header bar of menu should be "Select Menu"', () => {
+      expect(w.find('.sm-header h3').text()).to.equal('Select Menu')
     })
-    it('Click the callback menu item(last one), its should executed the function and created a DIV dom and its class name should be "v-selectmenu-callback"', () => {
+    it('Click the callback menu item(last one), its should executed the function and created a DIV dom and its class name should be "vue-select-menu-callback"', () => {
       w.findAll('ul.sm-regular li').at(8).find('a').trigger('click')
-      // console.log(document.querySelector('.v-selectmenu-callback'))
+      // console.log(document.querySelector('.vue-select-menu-callback'))
       // console.log(w.findAll('ul.sm-regular li').at(8).text())
-      expect(typeof document.querySelector('.v-selectmenu-callback') !== 'undefined').to.equal(true)
+      expect(typeof document.querySelector('.vue-select-menu-callback') !== 'undefined').to.equal(true)
     })
     it('After click, the menu should be invisable', () => {
       expect(w.find('div.v-dropdown-container').isVisible()).to.equal(false)
     })
-    it('Change regular menu data source, the number of header menu item should be 3', () => {
-      const wrapper = mount(sm, {
+    it('Change regular menu data source, the number of header menu item should be 3', async () => {
+      const wrapper = await mount(sm, {
         propsData: {
           data: regularWithHeader,
           type: REGULAR
@@ -112,13 +112,14 @@ describe('v-selectmenu regular mode', () => {
     it('The number of group tabs should be 4', () => {
       expect(w.findAll('.sm-tabs ul li').length).to.equal(4)
     })
-    it('"activeGroup" option set to 2(index), the third group tab should be activated', () => {
-      w.find('div.sm-caller-container').trigger('click')
+    it('"activeGroup" option set to 2 (index), the third group tab should be activated', async () => {
+      await w.find('div.sm-caller-container').trigger('click')
       expect(w.findAll('.sm-tabs ul li').at(2).classes('active')).to.equal(true)
     })
-    it('Switch to the fourth group tab, the number of menu item should be 2 and items content should be "Facebook" and "Twitter"', () => {
-      w.findAll('.sm-tabs ul li').at(3).find('a').trigger('click')
+    it('Switch to the fourth group tab, the number of menu item should be 2 and items content should be "Facebook" and "Twitter"', async () => {
+      await w.findAll('.sm-tabs ul li').at(3).find('a').trigger('click')
       expect(w.findAll('ul.sm-regular li').length).to.equal(2)
+      console.log(w.findAll('ul.sm-regular li').at(0).text())
       expect(w.findAll('ul.sm-regular li').at(0).text()).to.equal('Facebook')
       expect(w.findAll('ul.sm-regular li').at(1).text()).to.equal('Twitter')
     })

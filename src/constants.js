@@ -14,6 +14,7 @@ export const ADVANCED = 'advanced'
 export const languages = {
   // Chinese
   cn: {
+    menu_title: '选择菜单',
     select_all_btn: '选择所有 (或当前页签) 项目',
     remove_all_btn: '清除所有选中的项目',
     close_btn: '关闭菜单 (Esc键)',
@@ -25,17 +26,19 @@ export const languages = {
   },
   // English
   en: {
+    menu_title: 'Select Menu',
     select_all_btn: 'Select All (Tabs) items',
     remove_all_btn: 'Clear all selected items',
     close_btn: 'Close Menu (Esc key)',
-    not_found: 'not found',
+    not_found: 'Not found',
     max_selected: 'You can only select up to max_selected_limit items',
     advanced_default: 'Select an option',
     regular_group: 'Menus',
     items_selected: 'selected_count items selected'
   },
-  // Spanish(Español)
+  // Spanish (Español)
   es: {
+    menu_title: 'Seleccione el menú',
     select_all_btn: 'Selecciona todos los elementos (Esta pestaña)',
     remove_all_btn: 'Limpiar todos los elementos seleccionados',
     close_btn: 'Cerrar menú (Tecla Esc)',
@@ -47,10 +50,11 @@ export const languages = {
   },
   // French (Français)
   fr: {
+    menu_title: 'Sélectionnez le menu',
     select_all_btn: 'Sélectionner tous les éléments',
     remove_all_btn: 'Désélectionner tous les éléments',
     close_btn: 'Ferme le menu (touche Esc)',
-    not_found: 'non trouvé',
+    not_found: 'Non trouvé',
     max_selected: 'Vous pouvez sélectionner au plus max_selected_limit éléments',
     advanced_default: 'Sélectionner un élément',
     regular_group: 'Menus',
@@ -58,6 +62,7 @@ export const languages = {
   },
   // Persian
   fa: {
+    menu_title: 'منو را انتخاب کنید',
     select_all_btn: 'انتخاب تمام موارد',
     remove_all_btn: 'حذف تمام موارد',
     close_btn: 'بستن (دمنه Esc(',
@@ -69,6 +74,7 @@ export const languages = {
   },
   // Japanese
   ja: {
+    menu_title: 'メニューを選択',
     select_all_btn: 'すべての （または現在のタブ） 項目を選択',
     remove_all_btn: '選択したすべての項目をクリアする',
     close_btn: '閉じる (Tabキー)',
@@ -77,5 +83,17 @@ export const languages = {
     advanced_default: '選択してください',
     regular_group: '複数のグループメニュー',
     items_selected: 'selected_count アイテムが選択されました'
+  },
+  // Vietnamese
+  vi: {
+    menu_title: 'Thực đơn chọn',
+    select_all_btn: 'Chọn tất cả',
+    remove_all_btn: 'Xóa tất cả lựa chọn',
+    close_btn: 'Đóng',
+    not_found: 'Không tìm thấy',
+    max_selected: 'Bạn chỉ có thể chọn tối đa max_selected_limit mục',
+    advanced_default: 'Chọn một mục',
+    regular_group: 'Menus',
+    items_selected: 'Đã chọn selected_count mục'
   }
 }

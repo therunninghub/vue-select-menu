@@ -5,7 +5,6 @@ export default {
     return {
       // dropdown container display status
       show: false,
-      i18n: languages[this.language] || languages.cn,
       // menu data or current group menu data
       results: [],
       tabIndex: -1,
@@ -20,6 +19,20 @@ export default {
     }
   },
   computed: {
+    i18n () {
+      const translation = (this.translations || languages)[this.language] || languages.en
+
+      return {
+        ...languages[this.language],
+        ...translation
+      }
+    },
+    computedTitle () {
+      if (this.title === false) {
+        return false
+      }
+      return this.title || this.i18n.menu_title
+    },
     btnText () {
       return this.picked.length
         ? this.picked.map(val => val[this.showField]).join(',')
@@ -44,9 +57,9 @@ export default {
      *   multiple items selected: display selected items length
      */
     caption () {
-      if (!this.title || typeof this.title !== 'string') return ''
+      if (!this.computedTitle || typeof this.computedTitle !== 'string') return ''
       if (this.type === REGULAR) {
-        return this.title
+        return this.computedTitle
       }
       if (this.type === ADVANCED) {
         if (this.picked.length) {
@@ -57,7 +70,7 @@ export default {
             return this.getRowText(this.picked[0])
           }
         } else {
-          return this.title
+          return this.computedTitle
         }
       }
     }

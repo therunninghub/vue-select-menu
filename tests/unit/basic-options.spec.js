@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import list from '@test/sample/nba-teams'
 import sm from '@/SelectMenu'
 
-describe('v-selectmenu basic options', () => {
+describe('vue-select-menu basic options', () => {
   describe('"embed" option set to true', () => {
     const wrapperEmbed = mount(sm, {
       propsData: {
@@ -38,23 +38,23 @@ describe('v-selectmenu basic options', () => {
       fullWidth: true
     }
   })
-  it('"align" option set to "left", the dropdown container should be aligned to the left', () => {
-    wrapper.setProps({ align: 'left' })
+  it('"align" option set to "left", the dropdown container should be aligned to the left', async () => {
+    await wrapper.setProps({ align: 'left' })
     expect(wrapper.vm.align).to.equal('left')
   })
-  it('"align" option set to "center", the dropdown container should be aligned to the center', () => {
-    wrapper.setProps({ align: 'center' })
+  it('"align" option set to "center", the dropdown container should be aligned to the center', async () => {
+    await wrapper.setProps({ align: 'center' })
     expect(wrapper.vm.align).to.equal('center')
   })
-  it('"align" option set to "right", the dropdown container should be aligned to the right', () => {
-    wrapper.setProps({ align: 'right' })
+  it('"align" option set to "right", the dropdown container should be aligned to the right', async () => {
+    await wrapper.setProps({ align: 'right' })
     expect(wrapper.vm.align).to.equal('right')
   })
   it('"width" set to 300, the dropdown container width should be 300px', () => {
     expect(wrapper.find('div.v-dropdown-container').attributes().style).to.have.string('width: 300px')
   })
-  it('When the "language" option is not specified, its default value should be "cn"', () => {
-    expect(wrapper.vm.language).to.equal('cn')
+  it('When the "language" option is not specified, its default value should be "en"', () => {
+    expect(wrapper.vm.language).to.equal('en')
   })
   it('When the "type" option is not specified, its default value should be "advanced"', () => {
     expect(wrapper.vm.type).to.equal('advanced')

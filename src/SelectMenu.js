@@ -7,7 +7,7 @@ import methods from './mixins/methods'
 import util from './mixins/util'
 
 export default {
-  name: 'v-selectmenu',
+  name: 'vue-select-menu',
   components: {
     regular: () => import('./components/regular/Menu'),
     advanced: () => import('./components/advanced/List'),

@@ -70,13 +70,19 @@ export default {
             }
           } else {
             this.picked.push(item)
+            this.$emit('select', item)
+            this.emitEvent()
           }
         } else {
           // remove item when it has been selected
           this.picked.splice(idx, 1)
+          this.$emit('unselect', item)
+          this.emitEvent()
         }
       } else { // single selection
         this.picked = this.inPicked(item) ? [] : [item]
+        this.$emit('select', item)
+        this.emitEvent()
         this.close()
       }
     },
@@ -141,6 +147,10 @@ export default {
       }
 
       this.init()
+    },
+    emitEvent () {
+      this.$emit('input', this.picked.slice().map(value => value[this.keyField]).join(','))
+      this.$emit('values', this.picked.slice())
     }
   }
 }

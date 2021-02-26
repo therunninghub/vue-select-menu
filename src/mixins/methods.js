@@ -23,14 +23,14 @@ export default {
     },
     selectAll () {
       if (this.results.length && !this.message) {
+        const arr = this.results
+          .filter(val => !this.picked.includes(val))
         if (this.maxSelected) {
           const left = this.maxSelected - this.picked.length
-          const available = this.results
-            .filter(val => !this.picked.includes(val))
-            .filter((val, idx) => idx < left)
+          const available = arr.filter((val, idx) => idx < left)
           this.picked = [...this.picked, ...available]
         } else {
-          this.picked = this.results
+          this.picked = [...this.picked, ...arr]
         }
       }
     },

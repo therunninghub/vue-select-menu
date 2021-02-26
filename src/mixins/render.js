@@ -57,7 +57,7 @@ export default {
     buildContainer (h) {
       return h('div', {
         class: {
-          'v-selectmenu': true,
+          'vue-select-menu': true,
           'sm-advanced': this.type === ADVANCED
         }
       }, [
@@ -69,7 +69,7 @@ export default {
       ])
     },
     buildHeader (h) {
-      if (!this.title) return
+      if (!this.computedTitle) return
 
       const header = []
       const genBtn = (title, btnClass, iconClass, event) => {
@@ -96,9 +96,11 @@ export default {
       }
 
       return h('div', { class: 'sm-header' }, [
-        h('h3', { domProps: {
-          innerHTML: this.caption
-        } }),
+        h('h3', {
+          domProps: {
+            innerHTML: this.caption
+          }
+        }),
         h('div', { class: 'sm-control' }, header)
       ])
     },

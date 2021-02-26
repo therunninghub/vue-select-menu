@@ -9,9 +9,13 @@ export default {
       type: Array,
       required: true
     },
+    translations: {
+      type: Object,
+      default: undefined
+    },
     language: {
       type: String,
-      default: 'cn'
+      default: 'en'
     },
     align: {
       type: String,
@@ -57,7 +61,7 @@ export default {
     // Boolean type to close header bar
     title: {
       type: [String, Boolean],
-      default: 'SelectMenu'
+      default: undefined
     },
     /**
      * advanced mode options

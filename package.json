@@ -5,6 +5,15 @@
   "author": "The Running Hub Team &lt;engineer@therunninghub.net&gt;",
   "license": "MIT",
   "main": "dist/vue-select-menu.js",
+  "homepage": "https://opensource.therunninghub.net/projects/vue-select-menu/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/therunninghub/vue-select-menu"
+  },
+  "files": [
+    "/dist",
+    "/src"
+  ],
   "scripts": {
     "dev": "npm run dev:docs",
     "dev:docs": "vuepress dev docs",

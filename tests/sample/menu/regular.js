@@ -33,41 +33,53 @@ export const regularWithHeader = [
 ]
 
 export const regularMultipleLevel = [
-  { content: 'Sports news website',
+  {
+    content: 'Sports news website',
     icon: 'fab,github',
     children: [
       { content: 'Fivb', url: 'http://www.fivb.com/' },
       { content: 'Fifa', url: 'http://www.fifa.com/' },
-      { content: 'NBA',
+      {
+        content: 'NBA',
         children: [
           { content: 'NBA official site', url: 'http://www.nba.com' },
           { content: 'Chicago Bulls', icon: 'fab,github', url: 'http://www.nba.com/bulls/' },
-          { content: 'Los Angeles Lakers',
+          {
+            content: 'Los Angeles Lakers',
             children: [
               { content: 'NBA official site', url: 'http://www.nba.com' },
               { content: 'Chicago Bulls', url: 'http://www.nba.com/bulls/' },
               { content: 'Los Angeles Lakers111', url: 'www.nba.com/lakers/' }
-            ] }
-        ] }
-    ] },
+            ]
+          }
+        ]
+      }
+    ]
+  },
   { content: 'sm-divider' },
-  { content: 'News',
+  {
+    content: 'News',
     children: [
       { content: 'BBC', url: 'http://www.bbc.com/news' },
       { content: 'CNN', url: 'http://www.cnn.com' },
       { content: 'Xinhua', url: 'http://www.xinhuanet.com' }
-    ] },
-  { content: 'Technology',
+    ]
+  },
+  {
+    content: 'Technology',
     children: [
       { content: 'Github', url: 'https://github.com' },
       { content: 'StackOverflow', url: 'https://stackoverflow.com/' },
       { content: 'Reddit', url: 'https://www.reddit.com' }
-    ] },
-  { content: 'Social',
+    ]
+  },
+  {
+    content: 'Social',
     children: [
       { content: 'Facebook', url: 'https://www.facebook.com' },
       { content: 'Twitter', url: 'https://twitter.com' }
-    ] }
+    ]
+  }
 ]
 
 export const regularGroup = [
@@ -81,7 +93,8 @@ export const regularGroup = [
       { content: 'Chicago Bulls', url: 'http://www.nba.com/bulls/' },
       { content: 'Los Angeles Lakers', url: 'www.nba.com/lakers/' }
     ]
-  }, {
+  },
+  {
     title: 'News',
     list: [
       { content: 'BBC', url: 'http://www.bbc.com/news' },
@@ -89,7 +102,8 @@ export const regularGroup = [
       { content: 'sm-divider' },
       { content: 'Xinhua', url: 'http://www.xinhuanet.com' }
     ]
-  }, {
+  },
+  {
     title: 'Technology',
     list: [
       { content: 'Github', url: 'https://github.com' },
@@ -97,7 +111,8 @@ export const regularGroup = [
       { content: 'sm-divider' },
       { content: 'Reddit', url: 'https://www.reddit.com' }
     ]
-  }, {
+  },
+  {
     title: 'Social',
     list: [
       { content: 'Facebook', url: 'https://www.facebook.com' },

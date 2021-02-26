@@ -1,4 +1,4 @@
 <script>
-import SelectMenu from '../../../src/SelectMenu';
-export default SelectMenu
+import VueSelectMenu from '../../../src/VueSelectMenu';
+export default VueSelectMenu
 </script>

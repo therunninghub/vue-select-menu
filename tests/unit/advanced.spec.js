@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import { expect } from 'chai'
 import { advancedGroup } from '@test/sample/menu/advanced'
 import nbaTeams from '@test/sample/nba-teams'
-import sm from '@/SelectMenu'
+import sm from '@/VueSelectMenu'
 
 describe('vue-select-menu advanced mode', () => {
   describe('basic advanced menu', () => {

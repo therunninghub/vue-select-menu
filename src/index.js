@@ -1,8 +1,8 @@
-import selectMenu from './SelectMenu'
+import VueSelectMenu from './VueSelectMenu'
 
 const Plugin = {
   install (Vue, options = {}) {
-    const props = selectMenu.mixins[0].props
+    const props = VueSelectMenu.mixins[0].props
     if (Object.keys(options).length) {
       if (typeof options.title !== 'undefined') props.title.default = options.title
       if (typeof options.language === 'string') props.language.default = options.language
@@ -10,9 +10,9 @@ const Plugin = {
       if (typeof options.query === 'boolean') props.query.default = options.query
       if (typeof options.scroll === 'boolean') props.scroll.default = options.scroll
     }
-    Vue.component(selectMenu.name, selectMenu)
+    Vue.component(VueSelectMenu.name, VueSelectMenu)
   }
 }
 
-export { selectMenu as SelectMenu }
+export { VueSelectMenu }
 export default Plugin

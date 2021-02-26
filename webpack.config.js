@@ -115,7 +115,7 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = false
+  module.exports.devtool = 'source-map'
   module.exports.optimization = merge(module.exports.optimization || {}, {
     minimize: true,
     minimizer: [new TerserPlugin()]

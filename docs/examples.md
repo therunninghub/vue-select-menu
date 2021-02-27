@@ -34,6 +34,7 @@
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -82,6 +83,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -130,6 +132,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -206,6 +209,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -272,6 +276,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -318,6 +323,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -358,6 +364,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -434,6 +441,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -498,6 +506,7 @@ export default {
 
 <script>
 import VueSelectMenu from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -598,6 +607,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -674,6 +684,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },
@@ -749,6 +760,7 @@ export default {
 
 <script>
 import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
   components: { VueSelectMenu },

@@ -12,7 +12,8 @@ Vue Select Menu is designed for usage with v-model directive.
 </template>
 
 <script>
-import VueSelectMenu from '@therunninghub/vue-select-menu';
+import VueSelectMenu from '@therunninghub/vue-select-menu'
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
     components: { VueSelectMenu },

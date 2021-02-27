@@ -86,11 +86,6 @@ export default {
     value () {
       this.init()
     },
-    picked (val) {
-      if (this.message && this.maxSelected && val.length < this.maxSelected) this.message = ''
-      this.$emit('input', val.slice().map(value => value[this.keyField]).join(','))
-      this.$emit('values', val.slice())
-    },
     data (val) {
       if (Array.isArray(val) && val.length) this.populate()
     },

@@ -23,14 +23,14 @@ export default {
     },
     selectAll () {
       if (this.results.length && !this.message) {
+        const arr = this.results
+          .filter(val => !this.picked.includes(val))
         if (this.maxSelected) {
           const left = this.maxSelected - this.picked.length
-          const available = this.results
-            .filter(val => !this.picked.includes(val))
-            .filter((val, idx) => idx < left)
+          const available = arr.filter((val, idx) => idx < left)
           this.picked = [...this.picked, ...available]
         } else {
-          this.picked = this.results
+          this.picked = [...this.picked, ...arr]
         }
       }
     },
@@ -70,13 +70,19 @@ export default {
             }
           } else {
             this.picked.push(item)
+            this.$emit('select', item)
+            this.emitEvent()
           }
         } else {
           // remove item when it has been selected
           this.picked.splice(idx, 1)
+          this.$emit('unselect', item)
+          this.emitEvent()
         }
       } else { // single selection
         this.picked = this.inPicked(item) ? [] : [item]
+        this.$emit('select', item)
+        this.emitEvent()
         this.close()
       }
     },
@@ -146,6 +152,10 @@ export default {
       }
 
       this.init()
+    },
+    emitEvent () {
+      this.$emit('input', this.picked.slice().map(value => value[this.keyField]).join(','))
+      this.$emit('values', this.picked.slice())
     }
   }
 }

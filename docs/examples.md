@@ -108,8 +108,16 @@ export default {
 
 <div class="my-3">
   <ClientOnly>
-    <vue-select-menu :data="groupMenu" type="regular" />
+    <vue-select-menu :data="groupMenu" type="regular"/>
   </ClientOnly>
+</div>
+<div class="my-3">
+  <ClientOnly>
+    <vue-select-menu :data="groupMenu2" type="regular" :activeGroup="activeGroup" :embed="true" />
+  </ClientOnly>
+</div>
+<div class="my-3">
+  <button type="button" class="btn btn-danger" @click="changeGroupData">Add new group and active the second group</button>
 </div>
 
 <details>
@@ -772,6 +780,7 @@ export default {
       value1: '7',
       value2: '3,5,17',
       dynamic: [],
+      activeGroup: 3,
       logs: [],
       disabled: false,
       available: true,
@@ -919,6 +928,41 @@ export default {
             { content: 'Twitter', url: 'https://twitter.com' }
           ]
         }
+      ],
+      groupMenu2: [
+        {
+          title: 'Sports',
+          list: [
+            { content: 'Fivb', url: 'http://www.fivb.com/' },
+            { content: 'Fifa', url: 'http://www.fifa.com/' },
+            { content: 'sm-divider' },
+            { content: 'NBA official site', url: 'http://www.nba.com' },
+            { content: 'Chicago Bulls', url: 'http://www.nba.com/bulls/' },
+            { content: 'Los Angeles Lakers', url: 'www.nba.com/lakers/' }
+          ]
+        }, {
+          title: 'News',
+          list: [
+            { content: 'BBC', url: 'http://www.bbc.com/news' },
+            { content: 'CNN', url: 'http://www.cnn.com' },
+            { content: 'sm-divider' },
+            { content: 'Xinhua', url: 'http://www.xinhuanet.com' }
+          ]
+        }, {
+          title: 'Technology',
+          list: [
+            { content: 'Github', url: 'https://github.com' },
+            { content: 'StackOverflow', url: 'https://stackoverflow.com/' },
+            { content: 'sm-divider' },
+            { content: 'Reddit', url: 'https://www.reddit.com' }
+          ]
+        }, {
+          title: 'Social',
+          list: [
+            { content: 'Facebook', url: 'https://www.facebook.com' },
+            { content: 'Twitter', url: 'https://twitter.com' }
+          ]
+        }
       ]
     }
   },
@@ -943,6 +987,25 @@ export default {
     },
     toMultipleLevel() {
       this.dynamic = this.multiLevel
+    },
+    changeGroupData() {
+      this.groupMenu2 = [
+        {
+          title: 'Design',
+          list: [
+            { content: 'Adobe', url: 'https://adobe.com/' },
+            { content: 'Corel', url: 'https://corel.com/' }
+          ]
+        },
+        {
+          title: 'Game',
+          list: [
+            { content: 'Riot Games', url: 'https://www.riotgames.com/' },
+            { content: 'Blizzard', url: 'https://www.blizzard.com/' }
+          ]
+        }
+      ]
+      this.activeGroup = 1
     }
   },
   mounted() {

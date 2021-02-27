@@ -21,7 +21,8 @@
     "build:docs": "cross-env NODE_ENV=production vuepress build docs",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ./src/**/*.js",
     "test:unit": "mochapack --webpack-config webpack.config.js --require tests/unit/setup.js tests/unit/**/*.spec.js",
-    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcov --reporter=text npm run test:unit"
+    "cover": "cross-env NODE_ENV=coverage nyc --reporter=lcov --reporter=text npm run test:unit",
+    "bundle": "npm run lint --fix && npm run test:unit && npm run cover && npm run build"
   },
   "dependencies": {
     "v-dropdown": "2.1.1"

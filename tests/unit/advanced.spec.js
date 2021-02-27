@@ -19,13 +19,11 @@ describe('vue-select-menu advanced mode', () => {
     it('"query" option set to false, the search bar should not exist', () => {
       expect(w.find('div.sm-search').exists()).to.equal(false)
     })
-    w.setProps({ value: '7' })
-    it('"value/v-model" option set value "7", the chosen item should be "Boston Celtics"', () => {
-      // the emitted results will sourround with [[]]
-      // for example in this case, got "values" emitted result is [[[{id:1,name:'xxx',desc:'xxx'}]]]
-      const picked = w.emitted().values[0][0]
+    it('"value/v-model" option set value "7", the chosen item should be "Boston Celtics"', async () => {
+      await w.setProps({ value: '7' })
+      const picked = w.findAll('ul.sm-results li.sm-selected')
       expect(picked.length).to.equal(1)
-      expect(picked[0].name).to.equal('Boston Celtics')
+      expect(picked.at(0).text()).to.equal('Boston Celtics')
     })
     it('The selected and highlight item in results list should be one and "Boston Celtics"', () => {
       const picked = w.findAll('.sm-results li.sm-selected')
@@ -98,7 +96,7 @@ describe('vue-select-menu advanced mode', () => {
       expect(w.vm.picked.some(val => val.name === 'Milwaukee Bucks')).to.equal(true)
       expect(w.vm.picked.some(val => val.name === 'Minnesota Timberwolves')).to.equal(true)
     })
-    it('"East" group should have 2 selected item', async () => {
+    it('"East" group should have 2 selected items', async () => {
       await w.find('div.sm-caller-container').trigger('click')
       expect(w.findAll('ul.sm-results li.sm-selected').length).to.equal(2)
     })
@@ -115,6 +113,14 @@ describe('vue-select-menu advanced mode', () => {
       expect(w.vm.picked.length).to.equal(5)
     })
     it('The text of header bar should be "5 items selected"', () => {
+      expect(w.find('.sm-header h3').text()).to.equal('5 items selected')
+    })
+    it('Set keepTitle to true, the text of header bar should be "Custom Title"', async () => {
+      await w.setProps({ title: 'Custom Title', keepTitle: true })
+      expect(w.find('.sm-header h3').text()).to.equal('Custom Title')
+    })
+    it('Set keepTitle to false, text of header bar should be "5 items selected"', async () => {
+      await w.setProps({ title: 'Custom Title', keepTitle: false })
       expect(w.find('.sm-header h3').text()).to.equal('5 items selected')
     })
     it('enter query keyword "sa", "East" group should only display "Not found", "West" group should have 2 items("Sacramento Kings" and "San Antonio Spurs")', async () => {

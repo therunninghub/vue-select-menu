@@ -47,7 +47,7 @@ export default {
     // the group that needs to be activated before the menu is opened
     activeGroup: {
       type: Number,
-      default: -1
+      default: 0
     },
     /**
      * the menu type
@@ -62,6 +62,11 @@ export default {
     title: {
       type: [String, Boolean],
       default: undefined
+    },
+    // Boolean type to keep the title on selected item was changed
+    keepTitle: {
+      type: [Boolean],
+      default: false
     },
     /**
      * advanced mode options

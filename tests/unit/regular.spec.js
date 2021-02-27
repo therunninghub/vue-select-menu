@@ -119,12 +119,32 @@ describe('vue-select-menu regular mode', () => {
     it('Switch to the fourth group tab, the number of menu item should be 2 and items content should be "Facebook" and "Twitter"', async () => {
       await w.findAll('.sm-tabs ul li').at(3).find('a').trigger('click')
       expect(w.findAll('ul.sm-regular li').length).to.equal(2)
-      console.log(w.findAll('ul.sm-regular li').at(0).text())
       expect(w.findAll('ul.sm-regular li').at(0).text()).to.equal('Facebook')
       expect(w.findAll('ul.sm-regular li').at(1).text()).to.equal('Twitter')
     })
     it('"title" option set to false, the menu header bar should not exist', () => {
       expect(w.find('div.sm-header').exists()).to.equal(false)
+    })
+    it('Add new group and active the second group, tabIndex should be 1', async () => {
+      const newRegularGroup = [
+        {
+          title: 'Design',
+          list: [
+            { content: 'Adobe', url: 'https://adobe.com/' },
+            { content: 'Corel', url: 'https://corel.com/' }
+          ]
+        },
+        {
+          title: 'Game',
+          list: [
+            { content: 'Riot Games', url: 'https://www.riotgames.com/' },
+            { content: 'Blizzard', url: 'https://www.blizzard.com/' }
+          ]
+        }
+      ]
+      await w.setProps({ data: newRegularGroup, activeGroup: 1 })
+      expect(w.findAll('.sm-tabs ul li').length).to.equal(2)
+      expect(w.vm.tabIndex).to.equal(1)
     })
   })
 })

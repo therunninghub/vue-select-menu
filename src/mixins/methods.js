@@ -91,11 +91,12 @@ export default {
       return list.filter(val => new RegExp(this.search.toLowerCase()).test(this.getRowText(val).toLowerCase()))
     },
     switchGroup () {
+      const tabIndex = this.tabIndex < this.data.length ? this.tabIndex : 0
       this.results = this.type === REGULAR
-        ? this.data[this.tabIndex].list
+        ? this.data[tabIndex].list
         : this.search
           ? this.filter()
-          : this.data[this.tabIndex].list
+          : this.data[tabIndex].list
     },
     /**
      * check if it is a group type
@@ -140,7 +141,11 @@ export default {
 
       if (this.data.length) {
         if (this.group) {
-          this.tabIndex = 0
+          if (this.tabIndex > this.data.length - 1) {
+            this.tabIndex = 0
+          } else {
+            this.tabIndex = this.activeGroup
+          }
         } else {
           this.results = this.data.slice()
         }

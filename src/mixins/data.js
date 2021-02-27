@@ -58,7 +58,7 @@ export default {
      */
     caption () {
       if (!this.computedTitle || typeof this.computedTitle !== 'string') return ''
-      if (this.type === REGULAR) {
+      if (this.keepTitle || this.type === REGULAR) {
         return this.computedTitle
       }
       if (this.type === ADVANCED) {
@@ -79,6 +79,9 @@ export default {
     tabIndex (val) {
       this.tabIndex = val
       this.switchGroup()
+    },
+    activeGroup (val) {
+      this.tabIndex = val < this.data.length ? val : 0
     },
     value () {
       this.init()

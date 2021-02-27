@@ -8,7 +8,7 @@ Integrate into your application via standard Vue api for registering and using c
 Vue Select Menu is designed for usage with v-model directive.
 ```vue
 <template>
-    <vue-select-menu v-model="date" :data="listData" />
+    <vue-select-menu v-model="value" :data="listData" />
 </template>
 
 <script>

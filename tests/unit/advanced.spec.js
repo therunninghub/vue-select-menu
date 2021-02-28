@@ -104,6 +104,18 @@ describe('vue-select-menu advanced mode', () => {
       await w.findAll('div.sm-tabs li').at(1).find('a').trigger('click')
       expect(w.findAll('ul.sm-results li.sm-selected').length).to.equal(1)
     })
+    it('Set activeGroup to 1, the active tab should be "West"', async () => {
+      await w.setProps({ activeGroup: 1 })
+      expect(w.find('.sm-tabs ul li.active').text()).to.equal('West')
+    })
+    it('Click on selected item, the active tab should not be changed', async () => {
+      await w.findAll('ul.sm-results li.sm-selected').at(0).trigger('click')
+      expect(w.find('.sm-tabs ul li.active').text()).to.equal('West')
+    })
+    it('Click on unselected item, the active tab should not be changed', async () => {
+      await w.findAll('ul.sm-results li:not(.sm-selected)').at(0).trigger('click')
+      expect(w.find('.sm-tabs ul li.active').text()).to.equal('West')
+    })
     it('Click "Clear all" icon button, should no items be selected', async () => {
       await w.find('span.sm-removeall-button').trigger('click')
       expect(w.vm.picked.length).to.equal(0)
@@ -136,6 +148,25 @@ describe('vue-select-menu advanced mode', () => {
       expect(items.length).to.equal(2)
       expect(items.at(0).find('.sm-item-text').text()).to.equal('Sacramento Kings')
       expect(items.at(1).find('.sm-item-text').text()).to.equal('San Antonio Spurs')
+    })
+    it('Change group data, the active tab should not be changed', async () => {
+      const newAdvancedGroup = [{
+        title: 'Design',
+        list: [
+          { id: 1, name: 'Adobe' },
+          { id: 2, name: 'Corel' }
+        ]
+      }, {
+        title: 'Game',
+        list: [
+          { id: 3, name: 'Riot Games' },
+          { id: 4, name: 'Blizzard' }
+        ]
+      }]
+      await w.setProps({ data: newAdvancedGroup, multiple: true, group: true })
+      expect(w.vm.tabIndex).to.equal(1)
+      expect(w.findAll('.sm-tabs ul li').length).to.equal(2)
+      expect(w.findAll('.sm-tabs ul li.active').at(0).text()).to.equal('Game')
     })
   })
 })

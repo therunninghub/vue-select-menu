@@ -125,7 +125,7 @@ describe('vue-select-menu regular mode', () => {
     it('"title" option set to false, the menu header bar should not exist', () => {
       expect(w.find('div.sm-header').exists()).to.equal(false)
     })
-    it('Add new group and active the second group, tabIndex should be 1', async () => {
+    it('Change group data and active the second group, tabIndex should be 1', async () => {
       const newRegularGroup = [
         {
           title: 'Design',
@@ -143,8 +143,9 @@ describe('vue-select-menu regular mode', () => {
         }
       ]
       await w.setProps({ data: newRegularGroup, activeGroup: 1 })
-      expect(w.findAll('.sm-tabs ul li').length).to.equal(2)
       expect(w.vm.tabIndex).to.equal(1)
+      expect(w.findAll('.sm-tabs ul li').length).to.equal(2)
+      expect(w.findAll('.sm-tabs ul li.active').at(0).text()).to.equal('Game')
     })
   })
 })

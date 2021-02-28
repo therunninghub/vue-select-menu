@@ -119,7 +119,7 @@ export default {
   </ClientOnly>
 </div>
 <div class="my-3">
-  <button type="button" class="btn btn-danger" @click="changeGroupData">Add new group and active the second group</button>
+  <button type="button" class="btn btn-danger" @click="changeGroupData">Change menu data and active the second group</button>
 </div>
 
 <details>
@@ -352,6 +352,20 @@ export default {
   <ClientOnly>
     <vue-select-menu :data="groupData" :max-selected="3" :multiple="true" key-field="id" v-model="value2" />
   </ClientOnly>
+</div>
+<div class="my-3">
+  <ClientOnly>
+    <vue-select-menu
+      :data="groupMenu3"
+      :multiple="true"
+      :group="true"
+      :embed="true"
+      :query="false"
+    />
+  </ClientOnly>
+</div>
+<div class="my-3">
+  <button type="button" class="btn btn-danger" @click="changeAdvancedGroupData">Change menu data</button>
 </div>
 
 <details>
@@ -975,7 +989,24 @@ export default {
             { content: 'Twitter', url: 'https://twitter.com' }
           ]
         }
-      ]
+      ],
+      groupMenu3: [{
+        title: 'Sports',
+        list: [
+          { id: 1, name: 'Fivb' },
+          { id: 2, name: 'Fifa' },
+          { id: 3, name: 'NBA official site' },
+          { id: 4, name: 'Chicago Bulls' },
+          { id: 5, name: 'Los Angeles Lakers' }
+        ]
+      }, {
+        title: 'News',
+        list: [
+          { id: 6, name: 'BBC' },
+          { id: 7, name: 'CNN' },
+          { id: 8, name: 'Xinhua' }
+        ] }
+      ],
     }
   },
   methods: {
@@ -1005,23 +1036,37 @@ export default {
         {
           title: 'Design',
           list: [
-            { content: 'Adobe', url: 'https://adobe.com/' },
-            { content: 'Corel', url: 'https://corel.com/' }
+            { id: 1, content: 'Adobe' },
+            { id: 2, content: 'Corel' }
           ]
         },
         {
           title: 'Game',
           list: [
-            { content: 'Riot Games', url: 'https://www.riotgames.com/' },
-            { content: 'Blizzard', url: 'https://www.blizzard.com/' }
+            { id: 3, content: 'Riot Games' },
+            { id: 4, content: 'Blizzard' }
           ]
         }
       ]
       this.activeGroup = 1
+    },
+    changeAdvancedGroupData() {
+      this.groupMenu3 = [{
+        title: 'Design',
+        list: [
+          { id: 1, name: 'Adobe' },
+          { id: 2, name: 'Corel' }
+        ]
+      }, {
+        title: 'Game',
+        list: [
+          { id: 3, name: 'Riot Games' },
+          { id: 4, name: 'Blizzard' }
+        ] }
+      ]
     }
   },
   mounted() {
-    this.$forceUpdate()
     this.dynamic = this.menu
   }
 }

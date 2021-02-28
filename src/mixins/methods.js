@@ -91,7 +91,7 @@ export default {
       return list.filter(val => new RegExp(this.search.toLowerCase()).test(this.getRowText(val).toLowerCase()))
     },
     switchGroup () {
-      const tabIndex = this.tabIndex < this.data.length ? this.tabIndex : 0
+      const tabIndex = this.tabIndex < this.data.length && this.tabIndex > -1 ? this.tabIndex : 0
       this.results = this.type === REGULAR
         ? this.data[tabIndex].list
         : this.search
@@ -144,7 +144,11 @@ export default {
           if (this.tabIndex > this.data.length - 1) {
             this.tabIndex = 0
           } else {
-            this.tabIndex = this.activeGroup
+            const isActiveGroupChanged = Object.keys(this.$options.propsData).some(p => p === 'activeGroup')
+            if (isActiveGroupChanged === true) {
+              this.tabIndex = this.activeGroup
+            }
+            this.switchGroup()
           }
         } else {
           this.results = this.data.slice()

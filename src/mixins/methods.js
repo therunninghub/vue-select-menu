@@ -1,4 +1,4 @@
-import { REGULAR, ADVANCED } from '../constants'
+import { REGULAR, ADVANCED, EVENT_SELECT_ALL_TAB_ITEMS, EVENT_SELECT, EVENT_UNSELECT } from '../constants'
 const UP = 38
 const DOWN = 40
 const ESC = 27
@@ -25,12 +25,23 @@ export default {
       if (this.results.length && !this.message) {
         const arr = this.results
           .filter(val => !this.picked.includes(val))
+
+        const self = this
+        let addedItems = []
         if (this.maxSelected) {
           const left = this.maxSelected - this.picked.length
-          const available = arr.filter((val, idx) => idx < left)
-          this.picked = [...this.picked, ...available]
+          addedItems = arr.filter((val, idx) => idx < left)
         } else {
-          this.picked = [...this.picked, ...arr]
+          addedItems = arr
+        }
+
+        this.picked = [...this.picked, ...addedItems]
+        // emit events
+        if (this.selectAllTabItemsEvents.includes(EVENT_SELECT_ALL_TAB_ITEMS)) {
+          this.$emit(EVENT_SELECT_ALL_TAB_ITEMS, addedItems)
+        }
+        if (this.selectAllTabItemsEvents.includes(EVENT_SELECT)) {
+          addedItems.forEach(self.emitSelectEvent)
         }
       }
     },
@@ -70,18 +81,18 @@ export default {
             }
           } else {
             this.picked.push(item)
-            this.$emit('select', item)
+            this.emitSelectEvent(item)
             this.emitEvent()
           }
         } else {
           // remove item when it has been selected
           this.picked.splice(idx, 1)
-          this.$emit('unselect', item)
+          this.emitUnselectEvent(item)
           this.emitEvent()
         }
       } else { // single selection
         this.picked = this.inPicked(item) ? [] : [item]
-        this.$emit('select', item)
+        this.emitSelectEvent(item)
         this.emitEvent()
         this.close()
       }
@@ -156,6 +167,12 @@ export default {
       }
 
       this.init()
+    },
+    emitSelectEvent (item) {
+      this.$emit(EVENT_SELECT, item)
+    },
+    emitUnselectEvent (item) {
+      this.$emit(EVENT_UNSELECT, item)
     },
     emitEvent () {
       this.$emit('input', this.picked.slice().map(value => value[this.keyField]).join(','))

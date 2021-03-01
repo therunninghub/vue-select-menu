@@ -1,4 +1,4 @@
-import { ADVANCED } from '../constants'
+import { ADVANCED, EVENT_CLEAR_ALL, EVENT_UNSELECT } from '../constants'
 
 export default {
   methods: {
@@ -19,8 +19,17 @@ export default {
       if (this.type === ADVANCED) this.highlight = -1
     },
     clear () {
-      if (this.type !== ADVANCED) return
-      this.picked = []
+      if (this.type !== ADVANCED) { return }
+      const self = this
+      // emit events
+      if (this.clearAllEvents.includes(EVENT_CLEAR_ALL)) {
+        const emitData = [...this.picked]
+        this.$emit(EVENT_CLEAR_ALL, emitData)
+      }
+      if (this.clearAllEvents.includes(EVENT_UNSELECT)) {
+        this.picked.forEach(self.emitUnselectEvent)
+      }
+      this.picked.splice(0, this.picked.length)
       if (!this.multiple) this.close()
     },
     close () {

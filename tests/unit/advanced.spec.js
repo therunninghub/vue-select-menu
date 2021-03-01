@@ -54,15 +54,23 @@ describe('vue-select-menu advanced mode', () => {
       await w.findAll('.sm-results li').at(0).trigger('click')
       expect(w.find('.sm-results li.sm-selected').find('.sm-item-text').text()).to.equal('Chicago Bulls(芝加哥公牛)')
     })
+    it('Click "Clear all" icon button, default clear all event should be emitted', async () => {
+      await w.find('div.sm-caller-container').trigger('click')
+      await w.find('span.sm-removeall-button').trigger('click')
+      expect(w.emitted().clearAll.length).to.equal(1)
+      expect(w.emitted().clearAll[0][0].length).to.equal(1)
+    })
     it('After "Clear all" icon button click, should no item is selected', async () => {
       await w.find('div.sm-caller-container').trigger('click')
       await w.find('span.sm-removeall-button').trigger('click')
       expect(w.vm.picked.length).to.equal(0)
+      expect(w.emitted().clearAll[0][0].length).to.equal(1)
     })
-    it('Click "Select all" icon button, all of items should be selected ', async () => {
+    it('Click "Select all" icon button, all of items should be selected', async () => {
       await w.find('div.sm-caller-container').trigger('click')
       await w.find('span.sm-selectall-button').trigger('click')
-      expect(w.vm.picked.length).to.equal(30)
+      expect(w.vm.picked.length).to.equal(nbaTeams.length)
+      expect(w.emitted().selectAllTabItems[0][0].length).to.equal(nbaTeams.length)
     })
     it('enter query keyword "sa", the result list should only have 2 items("Sacramento Kings(萨克拉门托国王)" and "San Antonio Spurs(圣安东尼奥马刺)")', async () => {
       await w.find('.sm-search input').setValue('sa')

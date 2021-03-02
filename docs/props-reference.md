@@ -101,5 +101,15 @@ scroll: {
 rtl: {
   type: Boolean,
   default: false
+},
+// valid events: selectAllTabItems, select
+selectAllTabItemsEvents: {
+  type: Array,
+  default: () => ['selectAllTabItems']
+},
+// valid events: clear, unselect
+clearAllEvents: {
+  type: Array,
+  default: () => ['clear']
 }
 ```

@@ -301,9 +301,9 @@ export default {
 
 <div class="my-3">
   <ClientOnly>
-    <vue-select-menu :data="listData" :max-selected="3" :multiple="true">
+    <vue-select-menu :data="listData" :max-selected="3" :multiple="true" :width="200">
       <template #row="{ row }">
-        <div v-html="`${row.name} (${row.desc})`"></div>
+        <div v-html="`${row.name} (${row.countryCode})`"></div>
       </template>
     </vue-select-menu>
   </ClientOnly>
@@ -797,6 +797,130 @@ export default {
 
 </details>
 
+## Custom select all tab items event
+<div class="my-3">
+  <ClientOnly>
+    <vue-select-menu
+      :data="groupMenu3"
+      :multiple="true"
+      :group="true"
+      :select-all-tab-items-events="['select']"
+      @select="showSelectLogs"
+    />
+  </ClientOnly>
+</div>
+
+<div class="mb-3">
+  <div v-for="log in selectLogs" :key="log.id">
+    <div v-text="log"></div>
+  </div>
+</div>
+
+<details>
+  <summary>Show code</summary>
+
+```vue
+<template>
+  <vue-select-menu :data="groupMenu3" :multiple="true" :group="true" :select-all-tab-items-events="['select']" @select="showSelectLogs" />
+</template>
+
+<script>
+import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
+
+export default {
+  components: { VueSelectMenu },
+  data: () => ({
+    groupMenu3: [{
+      title: 'Sports',
+      list: [
+        { id: 1, name: 'Fivb' },
+        { id: 2, name: 'Fifa' },
+        { id: 3, name: 'NBA official site' },
+        { id: 4, name: 'Chicago Bulls' },
+        { id: 5, name: 'Los Angeles Lakers' }
+      ]
+    }, {
+      title: 'News',
+      list: [
+        { id: 6, name: 'BBC' },
+        { id: 7, name: 'CNN' },
+        { id: 8, name: 'Xinhua' }
+      ] }
+    ],
+  }),
+  methods: {
+    showSelectLogs (data) {
+      this.selectLogs.push(`Event: 'select' | Data: ${JSON.stringify(data)}`)
+    },
+  }
+};
+</script>
+```
+</details>
+
+## Custom clear all items event
+<div class="my-3">
+  <ClientOnly>
+    <vue-select-menu
+      :data="groupMenu3"
+      :multiple="true"
+      :group="true"
+      :clear-all-events="['unselect']"
+      @unselect="showUnselectLogs"
+    />
+  </ClientOnly>
+</div>
+
+<div class="mb-3">
+  <div v-for="log in unselectLogs" :key="log.id">
+    <div v-text="log"></div>
+  </div>
+</div>
+
+<details>
+  <summary>Show code</summary>
+
+```vue
+<template>
+  <vue-select-menu :data="groupMenu3" :multiple="true" :group="true" :clear-all-events="['unselect']" @unselect="showUnselectLogs" />
+</template>
+
+<script>
+import { VueSelectMenu } from "@therunninghub/vue-select-menu"
+import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
+
+export default {
+  components: { VueSelectMenu },
+  data: () => ({
+    groupMenu3: [{
+      title: 'Sports',
+      list: [
+        { id: 1, name: 'Fivb' },
+        { id: 2, name: 'Fifa' },
+        { id: 3, name: 'NBA official site' },
+        { id: 4, name: 'Chicago Bulls' },
+        { id: 5, name: 'Los Angeles Lakers' }
+      ]
+    }, {
+      title: 'News',
+      list: [
+        { id: 6, name: 'BBC' },
+        { id: 7, name: 'CNN' },
+        { id: 8, name: 'Xinhua' }
+      ] }
+    ],
+  }),
+  methods: {
+    showSelectLogs (data) {
+      this.selectLogs.push(`Event: 'unselect' | Data: ${JSON.stringify(data)}`)
+    },
+  }
+};
+</script>
+```
+</details>
+
 <!-- Script section -->
 <script>
 export default {
@@ -808,6 +932,8 @@ export default {
       dynamic: [],
       activeGroup: 3,
       logs: [],
+      selectLogs: [],
+      unselectLogs: [],
       disabled: false,
       available: true,
       groupData: [{
@@ -850,13 +976,13 @@ export default {
         ] }
       ],
       listData: [
-        { id: 1, name: 'Chinese' },
-        { id: 2, name: 'English' },
-        { id: 3, name: 'Spanish (Español)'},
-        { id: 4, name: 'French (Français)'},
-        { id: 5, name: 'Persian'},
-        { id: 6, name: 'Japanese'},
-        { id: 7, name: 'Vietnamese'},
+        { id: 1, name: 'Chinese', countryCode: 'CHN'  },
+        { id: 2, name: 'English', countryCode: 'GBR'  },
+        { id: 3, name: 'Spanish (Español)', countryCode: 'ESP' },
+        { id: 4, name: 'French (Français)', countryCode: 'FRA' },
+        { id: 5, name: 'Persian', countryCode: 'IRN' },
+        { id: 6, name: 'Japanese', countryCode: 'JPN' },
+        { id: 7, name: 'Vietnamese', countryCode: 'VIE' },
       ],
       menu: [
         { content: '163 NetEase', url: 'http://www.163.com' },
@@ -1025,6 +1151,12 @@ export default {
         this.logs.push(data)
       }
     },
+    showSelectLogs (data) {
+      this.selectLogs.push(`Event: 'select' | Data: ${JSON.stringify(data)}`)
+    },
+    showUnselectLogs (data) {
+      this.selectLogs.push(`Event: 'unselect' | Data: ${JSON.stringify(data)}`)
+    },
     changeData() {
       this.dynamic = this.headerMenu
     },
@@ -1055,7 +1187,7 @@ export default {
         title: 'Design',
         list: [
           { id: 1, name: 'Adobe' },
-          { id: 2, name: 'Corel' }
+          { id: 2, name: 'Corel', disabled: true }
         ]
       }, {
         title: 'Game',

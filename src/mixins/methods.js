@@ -98,11 +98,12 @@ export default {
       }
     },
     filter () {
-      const list = this.group ? this.data[this.tabIndex].list.slice() : this.data.slice()
+      const tabIndex = this.computedTabIndex
+      const list = this.group ? this.data[tabIndex].list.slice() : this.data.slice()
       return list.filter(val => new RegExp(this.search.toLowerCase()).test(this.getRowText(val).toLowerCase()))
     },
     switchGroup () {
-      const tabIndex = this.tabIndex < this.data.length && this.tabIndex > -1 ? this.tabIndex : 0
+      const tabIndex = this.computedTabIndex
       this.results = this.type === REGULAR
         ? this.data[tabIndex].list
         : this.search

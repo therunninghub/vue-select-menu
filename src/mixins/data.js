@@ -73,6 +73,9 @@ export default {
           return this.computedTitle
         }
       }
+    },
+    computedTabIndex () {
+      return this.tabIndex < this.data.length && this.tabIndex > -1 ? this.tabIndex : 0
     }
   },
   watch: {

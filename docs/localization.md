@@ -30,16 +30,8 @@ language: {
         items_selected: 'Đã chọn selected_count mục'
       }
     }"
-    language="en"
-    :data="[
-      { id: 1, name: 'Chinese' },
-      { id: 2, name: 'English' },
-      { id: 3, name: 'Spanish (Español)'},
-      { id: 4, name: 'French (Français)'},
-      { id: 5, name: 'Persian'},
-      { id: 6, name: 'Japanese'},
-      { id: 7, name: 'Vietnamese'},
-    ]"></vue-select-menu>
+    :language="language"
+    :data="listData"></vue-select-menu>
 </ClientOnly>
 
 <details>
@@ -96,16 +88,8 @@ export default {
         advanced_default: 'Choose language',
       }
     }"
-    language="en"
-    :data="[
-      { id: 1, name: 'Chinese' },
-      { id: 2, name: 'English' },
-      { id: 3, name: 'Spanish (Español)'},
-      { id: 4, name: 'French (Français)'},
-      { id: 5, name: 'Persian'},
-      { id: 6, name: 'Japanese'},
-      { id: 7, name: 'Vietnamese'},
-    ]"></vue-select-menu>
+    :language="language2"
+    :data="listData"></vue-select-menu>
 </ClientOnly>
 
 <details>
@@ -121,7 +105,6 @@ import { VueSelectMenu } from "@therunninghub/vue-select-menu"
 import '@therunninghub/vue-select-menu/dist/VueSelectMenu.css'
 
 export default {
-  name: 'localization',
   components: { VueSelectMenu },
   data: () => ({
     translations: {
@@ -145,3 +128,22 @@ export default {
 ```
 
 </details>
+
+<script>
+export default {
+  name: 'localization',
+  data: () => ({
+    language: 'vi',
+    language2: 'en',
+    listData: [
+      { id: 'cn', name: 'Chinese' },
+      { id: 'en', name: 'English' },
+      { id: 'es', name: 'Spanish (Español)'},
+      { id: 'fr', name: 'French (Français)'},
+      { id: 'fa', name: 'Persian'},
+      { id: 'ja', name: 'Japanese'},
+      { id: 'vi', name: 'Vietnamese'},
+    ]
+  })
+};
+</script>

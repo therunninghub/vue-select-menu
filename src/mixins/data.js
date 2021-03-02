@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     i18n () {
-      const translation = (this.translations || languages)[this.language] || languages.en
+      const translation = (typeof this.translations === 'undefined' ? undefined : this.translations[this.language]) || languages[this.language] || languages.en
 
       return {
         ...languages[this.language],
@@ -73,6 +73,9 @@ export default {
           return this.computedTitle
         }
       }
+    },
+    computedTabIndex () {
+      return this.tabIndex < this.data.length && this.tabIndex > -1 ? this.tabIndex : 0
     }
   },
   watch: {

@@ -1,4 +1,9 @@
-# [@therunninghub/vue-select-menu](https://opensource.therunninghub.net/projects/vue-select-menu/) [![npm version](https://img.shields.io/npm/v/@therunninghub/vue-select-menu.svg)](https://www.npmjs.com/package/@therunninghub/vue-select-menu) [![npm download](https://img.shields.io/npm/dy/@therunninghub/vue-select-menu.svg)](https://www.npmjs.com/package/@therunninghub/vue-select-menu) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+# @therunninghub/vue-select-menu
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c89da0f9-e56c-4c84-84d0-0fac644c443b/deploy-status)](https://app.netlify.com/sites/trh-vue-select-menu/deploys)
+[![NPM Status](https://img.shields.io/npm/v/@therunninghub/vue-select-menu.svg)](https://www.npmjs.com/package/@therunninghub/vue-select-menu)
+[![NPM Downloads](https://img.shields.io/npm/dy/@therunninghub/vue-select-menu.svg)](https://www.npmjs.com/package/@therunninghub/vue-select-menu)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Select menu for Vue.JS, A simple, easier and highly customized menu solution. This package is forked from the original package [v-selectmenu](https://github.com/TerryZ/v-selectmenu/) by [Terry Zeng](https://github.com/TerryZ).
 

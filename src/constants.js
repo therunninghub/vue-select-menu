@@ -6,6 +6,14 @@ export const MENU_ROOT = 'root'
 export const DIVIDER = 'sm-divider'
 
 /**
+ * event type
+ */
+export const EVENT_SELECT = 'select'
+export const EVENT_UNSELECT = 'unselect'
+export const EVENT_SELECT_ALL_TAB_ITEMS = 'selectAllTabItems'
+export const EVENT_CLEAR_ALL = 'clearAll'
+
+/**
  * menu type
  */
 export const REGULAR = 'regular'

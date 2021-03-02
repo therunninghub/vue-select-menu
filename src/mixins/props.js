@@ -1,4 +1,4 @@
-import { ADVANCED } from '../constants'
+import { ADVANCED, EVENT_SELECT, EVENT_UNSELECT, EVENT_SELECT_ALL_TAB_ITEMS, EVENT_CLEAR_ALL } from '../constants'
 
 export default {
   props: {
@@ -100,6 +100,18 @@ export default {
     rtl: {
       type: Boolean,
       default: false
+    },
+    // valid events: selectAllTabItems, select
+    selectAllTabItemsEvents: {
+      type: Array,
+      default: () => [EVENT_SELECT_ALL_TAB_ITEMS],
+      validator: (v) => v.every((e) => [EVENT_SELECT_ALL_TAB_ITEMS, EVENT_SELECT].includes(e))
+    },
+    // valid events: clearAll, unselect
+    clearAllEvents: {
+      type: Array,
+      default: () => [EVENT_CLEAR_ALL],
+      validator: (v) => v.every((e) => [EVENT_CLEAR_ALL, EVENT_UNSELECT].includes(e))
     }
   }
 }
